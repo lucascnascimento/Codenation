@@ -200,3 +200,122 @@ body {
 .catalogo-menu-lista-item a:hover {
   box-shadow: inset 0 -1px 0 #e4bb23;
 }
+
+.catalogo-filmes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.catalogo-filmes-lista-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  overflow: hidden;
+  width: 24%;
+}
+
+.filme-poster {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.filme-poster img {
+  width: 100%;
+  height: auto;
+}
+
+.filme-poster-info {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  padding: 80px, 20px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+  visibility: hidden;
+  width: 100%;
+  z-index: 1;
+}
+
+.catalogo-filmes-lista-item:hover .filme-poster-info {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filme-poster-info h3 {
+  color: #e4bb23;
+  font-size: 2em;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.filme-poster-link {
+  color: #fff;
+  font-size: 5em;
+  transition: all 0.2s ease-in-out;
+}
+
+.filme-poster-link:hover {
+  color: #e4bb23;
+}
+
+.filme-sinopse {
+  padding: 10px;
+  width: 100%;
+}
+
+.filme-sinopse-titulo {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.sinopse-genero {
+  margin: 10px 0;
+  display: flex;
+}
+
+.sinopse-genero-item {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #e4bb23;
+}
+
+.sinopse-genero-item:hover {
+  text-decoration: underline;
+}
+
+.filme-nota {
+  margin: 0;
+  align-items: center;
+  display: flex;
+  font-size: 2em;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.filme-nota i {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.filme-nota i:hover {
+  color: #e74c3c;
+}
