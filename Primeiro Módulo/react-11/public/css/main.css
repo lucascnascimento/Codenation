@@ -319,3 +319,29 @@ body {
 .filme-nota i:hover {
   color: #e74c3c;
 }
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.redes-sociais a {
+  margin-left: 40px;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.redes-sociais-twitter i:hover {
+  color: #55acee;
+}
+
+.redes-sociais-facebook i:hover {
+  color: #3b5998;
+}
+
+.redes-sociais-instagram i:hover {
+  color: #e95950;
+}
