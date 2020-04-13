@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  border: 0;
+  padding: 0;
+  background: #fafafa;
+}
+
+.container {
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  border-bottom: solid grey 1px;
+  padding: 10px;
+  background: white;
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: inline-block;
+  height: 40px;
+}
+
+.header__logo img {
+  height: 100%;
+}
+
+.header__icon {
+  color: black;
+}
+
+.stories__list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+.stories__item {
+  height: 68px;
+  margin: 0 8px;
+}
+
+.stories__item img {
+  height: 100%;
+  border-radius: 34px;
+}
+
+/* .stories__item--active {
+  border-width: 4px;
+  border-style: solid;
+  padding: 2px;
+} */
