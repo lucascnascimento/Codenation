@@ -13,6 +13,10 @@ body {
   background: #fafafa;
 }
 
+a {
+  color: black;
+}
+
 .container {
   max-width: 728px;
   margin: 0 auto;
@@ -72,3 +76,57 @@ header .container {
   border-style: solid;
   padding: 2px;
 } */
+
+.card {
+  background: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: thistle;
+  display: flex;
+  flex-direction: column;
+}
+.card__header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__user {
+  display: flex;
+  align-items: center;
+}
+
+.card__profilePicture img {
+  border-radius: 100%;
+  height: 40px;
+}
+.card__profileName {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12px;
+  padding-left: 10px;
+}
+.card__more {
+}
+.card__picture img {
+  width: 100%;
+  height: auto;
+}
+.card__actions {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.card__heartIcon {
+}
+.card__commentIcon {
+}
+.card__bookmarkIcon {
+  align-self: flex-end;
+}
+
+.card__likes {
+}
