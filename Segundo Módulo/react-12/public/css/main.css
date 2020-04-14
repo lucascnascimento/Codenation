@@ -82,7 +82,7 @@ header .container {
   border-style: solid;
   border-width: 1px;
   border-radius: 10px;
-  border-color: thistle;
+  border-color: rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
@@ -116,17 +116,30 @@ header .container {
 }
 .card__actions {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
 }
-.card__heartIcon {
+
+.card__likeAndComment {
+  display: flex;
 }
-.card__commentIcon {
-}
-.card__bookmarkIcon {
-  align-self: flex-end;
+
+.card__item {
+  padding: 10px;
 }
 
 .card__likes {
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.card__likes img {
+  border-radius: 100%;
+  height: 30px;
+  padding-left: 8px;
+}
+
+.card__likes p {
+  padding-left: 10px;
+  font-size: 12px;
 }
