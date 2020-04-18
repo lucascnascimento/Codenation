@@ -11,6 +11,7 @@ body {
   border: 0;
   padding: 0;
   background: #fafafa;
+  padding-bottom: 10px;
 }
 
 a {
@@ -85,6 +86,7 @@ header .container {
   border-color: rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
 .card__header {
   padding: 10px;
@@ -117,6 +119,7 @@ header .container {
 .card__actions {
   display: flex;
   justify-content: space-between;
+  padding: 3px 0;
 }
 
 .card__likeAndComment {
@@ -131,6 +134,7 @@ header .container {
   background-color: rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
+  padding: 5px 0;
 }
 
 .card__likes img {
