@@ -10,5 +10,8 @@
     "node"
   ],
   "author": "Lucas Cordeiro Nascimento",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
