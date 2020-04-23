@@ -10,12 +10,13 @@ const fibonacci = () => {
     } else if (fibonacciArray.length === 1) {
       fibonacciArray.push(1);
       recursiveFibonacci();
+    } else {
+      let aux =
+        fibonacciArray[fibonacciArray.length - 2] +
+        fibonacciArray[fibonacciArray.length - 1];
+      fibonacciArray.push(aux);
+      recursiveFibonacci();
     }
-    let aux =
-      fibonacciArray[fibonacciArray.length - 2] +
-      fibonacciArray[fibonacciArray.length - 1];
-    fibonacciArray.push(aux);
-    recursiveFibonacci();
   };
 
   recursiveFibonacci();
