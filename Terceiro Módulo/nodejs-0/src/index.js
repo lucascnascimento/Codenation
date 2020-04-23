@@ -2,6 +2,8 @@
 
 const fibonacci = () => {
   let fibonacciArray = [0];
+
+  // Calcula a sequência de Fibonacci recursivamente
   const recursiveFibonacci = () => {
     if (fibonacciArray[fibonacciArray.length - 1] > 350) {
       return fibonacciArray;
@@ -15,11 +17,12 @@ const fibonacci = () => {
     fibonacciArray.push(aux);
     recursiveFibonacci();
   };
+
   recursiveFibonacci();
   return fibonacciArray;
 };
 
-const isFibonnaci = (num) => null;
+const isFibonnaci = (num) => fibonacci().includes(num);
 
 module.exports = {
   fibonacci,
