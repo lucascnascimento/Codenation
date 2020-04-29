@@ -12,6 +12,7 @@
   "author": "Lucas Cordeiro Nascimento",
   "license": "ISC",
   "dependencies": {
+    "jest": "^25.5.2",
     "prompt-sync": "^4.2.0"
   }
 }
