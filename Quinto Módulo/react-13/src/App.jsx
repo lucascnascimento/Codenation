@@ -7,23 +7,25 @@ import Contacts from "./components/Contacts";
 import "./App.scss";
 
 class App extends React.Component {
+  state = {
+    contacts: [],
+  };
+
   // Pega os dados da API
   componentDidMount() {
-    fetch("https://5e82ac6c78337f00160ae496.mockapi.io/api/v1/contacts")
-      .then(function (response) {
+    fetch("https://5e82ac6c78337f00160ae496.mockapi.io/api/v1/contacts").then(
+      (response) => {
         if (response.status !== 200) {
           console.log("ERROR: " + response.status);
           return;
         }
 
-        // Examine the text in the response
-        response.json().then(function (data) {
-          console.log(data);
+        // Passa os contatos para o estado da aplicação
+        response.json().then((data) => {
+          this.setState({ contacts: data });
         });
-      })
-      .catch(function (err) {
-        console.log("Fetch Error :-S", err);
-      });
+      }
+    );
   }
 
   render() {
