@@ -2,16 +2,28 @@ import React from "react";
 
 class Contact extends React.Component {
   render() {
+    const {
+      avatar,
+      name,
+      phone,
+      country,
+      admissionDate,
+      company,
+      department,
+    } = this.props.data;
+
     return (
       <React.Fragment>
         <article className="contact">
-          <span className="contact__avatar" />
-          <span className="contact__data">Nome</span>
-          <span className="contact__data">Telefone</span>
-          <span className="contact__data">País</span>
-          <span className="contact__data">Admissão</span>
-          <span className="contact__data">Empresa</span>
-          <span className="contact__data">Departamento</span>
+          <div className="contact__avatar">
+            <img src={avatar} alt="avatar" />
+          </div>
+          <span className="contact__data">{name}</span>
+          <span className="contact__data">{phone}</span>
+          <span className="contact__data">{country}</span>
+          <span className="contact__data">{admissionDate}</span>
+          <span className="contact__data">{company}</span>
+          <span className="contact__data">{department}</span>
         </article>
       </React.Fragment>
     );

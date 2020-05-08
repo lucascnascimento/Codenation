@@ -9,6 +9,7 @@ import "./App.scss";
 class App extends React.Component {
   state = {
     contacts: [],
+    filteredContacts: [],
   };
 
   // Pega os dados da API
@@ -22,7 +23,7 @@ class App extends React.Component {
 
         // Passa os contatos para o estado da aplicação
         response.json().then((data) => {
-          this.setState({ contacts: data });
+          this.setState({ contacts: data, filteredContacts: data });
         });
       }
     );
@@ -33,7 +34,7 @@ class App extends React.Component {
       <React.Fragment>
         <Topbar />
         <Filters />
-        <Contacts />
+        <Contacts contacts={this.state.filteredContacts} />
       </React.Fragment>
     );
   }
