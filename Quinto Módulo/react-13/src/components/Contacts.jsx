@@ -8,7 +8,7 @@ class Contacts extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="container">
+        <div className="container" data-testid="contacts">
           <section className="contacts">
             <article className="contact">
               <span className="contact__avatar" />

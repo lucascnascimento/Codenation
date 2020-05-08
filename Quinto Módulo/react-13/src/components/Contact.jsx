@@ -14,7 +14,7 @@ class Contact extends React.Component {
 
     return (
       <React.Fragment>
-        <article className="contact">
+        <article className="contact" data-testid="contact">
           <div className="contact__avatar">
             <img src={avatar} alt="avatar" />
           </div>
