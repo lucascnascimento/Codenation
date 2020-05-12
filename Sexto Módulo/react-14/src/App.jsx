@@ -31,14 +31,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div data-testid="app" className="app">
         <Topbar />
         <Filters />
         <Contacts />
         {this.state.contacts.map((contact) => (
           <Contact data={contact} />
         ))}
-      </React.Fragment>
+      </div>
     );
   }
 }
