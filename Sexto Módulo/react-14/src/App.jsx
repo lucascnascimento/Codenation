@@ -12,6 +12,7 @@ class App extends React.Component {
     filteredContacts: [],
     filterName: "name",
     searchField: "",
+    sortBottomUp: true,
   };
 
   // Pega os dados da API
@@ -23,9 +24,18 @@ class App extends React.Component {
           return;
         }
 
-        // Passa os contatos para o estado da aplicação
+        // Passa os contatos ordenados para o estado da aplicação
         response.json().then((data) => {
-          this.setState({ contacts: data, filteredContacts: data });
+          const sortedContacts = this.sortContacts(
+            this.state.filterName,
+            data,
+            this.state.sortBottomUp
+          );
+
+          this.setState({
+            contacts: sortedContacts,
+            filteredContacts: sortedContacts,
+          });
         });
       }
     );
@@ -34,8 +44,12 @@ class App extends React.Component {
   // Salva o filtro escolhido no estado
   handleFilter = (e) => {
     const { name } = e.nativeEvent.target;
+    const { filterName, sortBottomUp } = this.state;
 
-    this.setState({ filterName: name });
+    // Se o usuário clicar duas vezes no mesmo fltro muda a ordem de ordenação
+    const sort = name === filterName ? !sortBottomUp : true;
+
+    this.setState({ filterName: name, sortBottomUp: sort });
   };
 
   // Salva o resultado da barra de pesquisa no estado
@@ -66,33 +80,79 @@ class App extends React.Component {
           );
         }
       });
-      this.setState({ filteredContacts: result });
+
+      // Ordena os contatos filtrados
+      const sortedContacts = this.sortContacts(
+        filterName,
+        result,
+        this.state.sortBottomUp
+      );
+
+      this.setState({ filteredContacts: sortedContacts });
     }
-    // Se a barra de pesquisa estiver vazia retorna todos os contatos
+
+    // Se a barra de pesquisa estiver vazia retorna todos os contatos ordenados
     else {
-      this.setState({ filteredContacts: this.state.contacts });
+      const sortedContacts = this.sortContacts(
+        filterName,
+        this.state.contacts,
+        this.state.sortBottomUp
+      );
+
+      this.setState({ filteredContacts: sortedContacts });
     }
   };
 
-  // Chama searchContact para procura o contato após a atualização de estado
+  // Ordena os contatos
+  sortContacts = (filterName, contactsToSort, sortBottomUp) => {
+    let sortedContacts;
+
+    // Ordena por data
+    if (filterName === "admissionDate") {
+      sortedContacts = contactsToSort.sort((a, b) => {
+        let dateA = new Date(a[filterName]);
+        let dateB = new Date(b[filterName]);
+
+        if (dateA.getTime() < dateB.getTime()) return -1;
+        if (dateA.getTime() > dateB.getTime()) return 1;
+        return 0;
+      });
+    } else {
+      // Ordena pelos outros parâmetros
+      sortedContacts = contactsToSort.sort((a, b) => {
+        if (a[filterName] < b[filterName]) return -1;
+        if (a[filterName] > b[filterName]) return 1;
+        return 0;
+      });
+    }
+
+    !sortBottomUp && sortedContacts.reverse();
+
+    return sortedContacts;
+  };
+
+  // Chama searchContact para procurar o contato após a atualização de estado
   componentDidUpdate(_, prevState) {
     if (
       this.state.searchField !== prevState.searchField ||
-      this.state.filterName !== prevState.filterName
+      this.state.filterName !== prevState.filterName ||
+      this.state.sortBottomUp !== prevState.sortBottomUp
     )
       this.searchContact(this.state.searchField, this.state.filterName);
   }
 
   render() {
+    const { filterName, filteredContacts, sortBottomUp } = this.state;
     return (
       <div data-testid="app" className="app">
         <Topbar />
         <Filters
           handleFilter={this.handleFilter}
           handleSearch={this.handleSearch}
-          selectedFilter={this.state.filterName}
+          selectedFilter={filterName}
+          sortBottomUp={sortBottomUp}
         />
-        <Contacts filteredContacts={this.state.filteredContacts} />
+        <Contacts filteredContacts={filteredContacts} />
       </div>
     );
   }

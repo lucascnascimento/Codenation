@@ -2,7 +2,12 @@ import React from "react";
 
 class Filters extends React.Component {
   render() {
-    const { handleFilter, handleSearch, selectedFilter } = this.props;
+    const {
+      handleFilter,
+      handleSearch,
+      selectedFilter,
+      sortBottomUp,
+    } = this.props;
     return (
       <React.Fragment>
         <div className="container" data-testid="filters">
@@ -28,7 +33,10 @@ class Filters extends React.Component {
               name="name"
               onClick={handleFilter}
             >
-              Nome <i className="fas fa-sort-down" />
+              Nome
+              <i
+                className={`fa ${sortBottomUp ? "fa-sort-up" : "fa-sort-down"}`}
+              />
             </button>
 
             <button
@@ -38,7 +46,10 @@ class Filters extends React.Component {
               name="country"
               onClick={handleFilter}
             >
-              País <i className="fas fa-sort-down" />
+              País
+              <i
+                className={`fa ${sortBottomUp ? "fa-sort-up" : "fa-sort-down"}`}
+              />
             </button>
 
             <button
@@ -48,7 +59,10 @@ class Filters extends React.Component {
               name="company"
               onClick={handleFilter}
             >
-              Empresa <i className="fas fa-sort-down" />
+              Empresa
+              <i
+                className={`fa ${sortBottomUp ? "fa-sort-up" : "fa-sort-down"}`}
+              />
             </button>
 
             <button
@@ -58,7 +72,10 @@ class Filters extends React.Component {
               name="department"
               onClick={handleFilter}
             >
-              Departamento <i className="fas fa-sort-down" />
+              Departamento
+              <i
+                className={`fa ${sortBottomUp ? "fa-sort-up" : "fa-sort-down"}`}
+              />
             </button>
 
             <button
@@ -68,7 +85,10 @@ class Filters extends React.Component {
               name="admissionDate"
               onClick={handleFilter}
             >
-              Data de admissão <i className="fas fa-sort-down" />
+              Data de admissão
+              <i
+                className={`fa ${sortBottomUp ? "fa-sort-up" : "fa-sort-down"}`}
+              />
             </button>
           </section>
         </div>
