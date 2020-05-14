@@ -16,11 +16,7 @@ class Filters extends React.Component {
                 onChange={handleSearch}
               />
 
-              <button
-                className="filters__search__icon"
-                onClick={handleFilter}
-                name="search"
-              >
+              <button className="filters__search__icon" name="search">
                 <i className="fa fa-search" />
               </button>
             </div>
