@@ -5,11 +5,13 @@ import Filters from "./components/Filters";
 import Contacts from "./components/Contacts";
 
 import "./App.scss";
-import Contact from "./components/Contact";
 
 class App extends React.Component {
   state = {
     contacts: [],
+    filteredContacts: [],
+    filterName: "name",
+    searchField: "",
   };
 
   // Pega os dados da API
@@ -23,21 +25,56 @@ class App extends React.Component {
 
         // Passa os contatos para o estado da aplicação
         response.json().then((data) => {
-          this.setState({ contacts: data });
+          this.setState({ contacts: data, filteredContacts: data });
         });
       }
     );
+  }
+
+  // Salva o filtro escolhido no estado
+  handleFilter = (e) => {
+    const { name } = e.nativeEvent.target;
+
+    this.setState({ filterName: name });
+  };
+
+  // Salva o resultado da barra de pesquisa no estado
+  handleSearch = (e) => {
+    const { value } = e.nativeEvent.target;
+
+    this.setState({ searchField: value });
+  };
+
+  // Procura o contato pelo conteúdo da barra de pesquisa e por filtro
+  searchContact = (searchField, filterName) => {
+    if (searchField) {
+      const result = this.state.contacts.filter(
+        (contact) =>
+          contact[filterName].toLowerCase().indexOf(searchField.toLowerCase()) >
+          -1
+      );
+      this.setState({ filteredContacts: result });
+    }
+  };
+
+  componentDidUpdate(_, prevState) {
+    if (
+      this.state.searchField !== prevState.searchField ||
+      this.state.filterName !== prevState.filterName
+    )
+      this.searchContact(this.state.searchField, this.state.filterName);
   }
 
   render() {
     return (
       <div data-testid="app" className="app">
         <Topbar />
-        <Filters />
-        <Contacts />
-        {this.state.contacts.map((contact) => (
-          <Contact data={contact} />
-        ))}
+        <Filters
+          handleFilter={this.handleFilter}
+          handleSearch={this.handleSearch}
+          selectedFilter={this.state.filterName}
+        />
+        <Contacts filteredContacts={this.state.filteredContacts} />
       </div>
     );
   }

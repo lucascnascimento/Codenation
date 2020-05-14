@@ -1,7 +1,9 @@
 import React from "react";
+import Contact from "./Contact";
 
 class Contacts extends React.Component {
   render() {
+    const { filteredContacts } = this.props;
     return (
       <div className="container" data-testid="contacts">
         <section className="contacts">
@@ -14,6 +16,10 @@ class Contacts extends React.Component {
             <span className="contact__data">Empresa</span>
             <span className="contact__data">Departamento</span>
           </article>
+          {filteredContacts &&
+            filteredContacts.map((contact) => (
+              <Contact key={contact.id} data={contact} />
+            ))}
         </section>
       </div>
     );
