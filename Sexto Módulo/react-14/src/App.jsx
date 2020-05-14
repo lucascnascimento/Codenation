@@ -47,16 +47,34 @@ class App extends React.Component {
 
   // Procura o contato pelo conteúdo da barra de pesquisa e por filtro
   searchContact = (searchField, filterName) => {
-    if (searchField) {
-      const result = this.state.contacts.filter(
-        (contact) =>
-          contact[filterName].toLowerCase().indexOf(searchField.toLowerCase()) >
-          -1
-      );
+    if (searchField && filterName) {
+      const result = this.state.contacts.filter((contact) => {
+        /* Se o filtro for de data, converte a data do contato da base de dados 
+        e checa se corresponde ao campo de pesquisa */
+        if (filterName === "admissionDate") {
+          const date = new Date(contact[filterName]).toLocaleDateString(
+            "pt-BR"
+          );
+          return date.indexOf(searchField) > -1;
+        } else {
+          /* Checa se o conteúdo da barra de pesquisa é correspondente às 
+          informações dos contatos */
+          return (
+            contact[filterName]
+              .toLowerCase()
+              .indexOf(searchField.toLowerCase()) > -1
+          );
+        }
+      });
       this.setState({ filteredContacts: result });
+    }
+    // Se a barra de pesquisa estiver vazia retorna todos os contatos
+    else {
+      this.setState({ filteredContacts: this.state.contacts });
     }
   };
 
+  // Chama searchContact para procura o contato após a atualização de estado
   componentDidUpdate(_, prevState) {
     if (
       this.state.searchField !== prevState.searchField ||
