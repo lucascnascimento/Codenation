@@ -17,7 +17,9 @@ const Routes = () => (
     <Route path="/users/:username">
       <ProfileRoute />
     </Route>
-    <Route path="/newuser"></Route>
+    <Route path="/newuser">
+      <NewUserRoute />
+    </Route>
   </Switch>
 );
 
