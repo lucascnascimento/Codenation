@@ -10,15 +10,11 @@ const Story = ({ story, user, handleClose }) => {
       <div className="container">
         <header className="story__header">
           <div className="user">
-            <Link to="/users/blackpanther">
-              <img
-                className="user__thumb"
-                src="https://viniciusvinna.netlify.app/assets//api-instagram/profiles/black-panther/black-panther-profile.jpg"
-                alt="T'Challa"
-              />
+            <Link to={`/users/${user.name}`}>
+              <img className="user__thumb" src={user.avatar} alt={user.name} />
             </Link>
-            <Link to="/users/blackpanther" className="user__name">
-              T'Challa
+            <Link to={`/users/${user.name}`} className="user__name">
+              {user.name}
             </Link>
           </div>
           <button className="story__close" onClick={handleClose}>
@@ -31,10 +27,7 @@ const Story = ({ story, user, handleClose }) => {
         </div>
 
         <div className="story__video__wrapper ">
-          <video
-            className="video-player"
-            src="https://viniciusvinna.netlify.app/assets/api-instagram/profiles/black-panther/black-panther-stories.mp4"
-          ></video>
+          <video autoplay className="video-player" src={story.videoUrl}></video>
         </div>
       </div>
     </section>

@@ -6,30 +6,43 @@ import "./Stories.scss";
 
 const Stories = ({ stories, getUserHandler }) => {
   const [showStory, setShowStory] = useState(false);
+  const [actualStory, setActualStory] = useState({});
+  const [actualUser, setActualUser] = useState({});
+
+  function handleShowStory(story, user) {
+    setShowStory(!showStory);
+    setActualStory(story);
+    setActualUser(user);
+  }
 
   return (
     <React.Fragment>
       <section className="stories" data-testid="stories">
         <div className="container">
-          <button
-            className="user__thumb"
-            key="t'challa"
-            onClick={() => setShowStory(!showStory)}
-          >
-            <div className="user__thumb__wrapper">
-              <img
-                src="https://viniciusvinna.netlify.app/assets//api-instagram/profiles/black-panther/black-panther-profile.jpg"
-                alt="story"
-              />
-            </div>
-          </button>
+          {stories &&
+            stories.map((story) => {
+              const user = getUserHandler(story.userId);
+              if (story && user) {
+                return (
+                  <button
+                    className="user__thumb"
+                    key={user.id}
+                    onClick={() => handleShowStory(story, user)}
+                  >
+                    <div className="user__thumb__wrapper">
+                      <img src={user.avatar} alt={user.name} />
+                    </div>
+                  </button>
+                );
+              }
+            })}
         </div>
       </section>
 
       {showStory && (
         <Story
-          story="https://5e7d0266a917d70016684219.mockapi.io/api/v1/stories/1"
-          user="https://5e7d0266a917d70016684219.mockapi.io/api/v1/users/1"
+          story={actualStory}
+          user={actualUser}
           handleClose={() => setShowStory(!showStory)}
         />
       )}
