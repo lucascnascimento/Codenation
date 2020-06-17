@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-
-import "./Login.scss";
-
-import { Logo } from "../../components";
+import React, { useEffect, useState } from "react";
+import { debounce } from "lodash";
+import Ink from "react-ink";
 
 import { endpoints } from "../../modules/endpoints";
 
 import backgroundImageMobile from "../../assets/images/app-intro-1.jpg";
 import backgroundImageDesktop from "../../assets/images/app-intro-2.jpg";
+
+import { Logo } from "../../components";
+
+import "./Login.scss";
 
 const Login = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,15 +27,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    window.addEventListener(
-      "resize",
-      setTimeout(() => {
-        return onResizeHandler;
-      }, 250)
-    );
+    window.addEventListener("resize", debounce(onResizeHandler, 250));
 
     return () => {
-      window.removeEventListener("resize", onResizeHandler);
+      window.removeEventListener("resize", debounce(onResizeHandler));
     };
   }, []);
 
@@ -53,12 +50,25 @@ const Login = () => {
     >
       <div className="container">
         <Logo />
+
         <h2 className="login__microcopy">
-          Não toca a música inteira mas toca o seu coração
+          Não toca a música inteira,
+          <strong>
+            {" "}
+            mas toca o seu{" "}
+            <span
+              role="img"
+              className="login__microcopy__heart"
+              aria-label="Coração"
+            >
+              ❤️
+            </span>
+          </strong>
         </h2>
 
         <a href={endpoints.getAuthorization.url} className="login__auth-button">
-          Entrar com o spotify
+          Entrar com Spotify
+          <Ink />
         </a>
       </div>
     </main>
